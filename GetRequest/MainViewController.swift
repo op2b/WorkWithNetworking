@@ -1,5 +1,6 @@
 
 import UIKit
+import UserNotifications
 
 enum Actions: String, CaseIterable {
     
@@ -30,11 +31,14 @@ class MainViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        registerForNotification()
         dataProvider.filelocation = { (location) in
             
             //saved file for user use
             print("Download finished: \(location.absoluteString)")
             self.filePath = location.absoluteString
+            self.alert.dismiss(animated: false, completion: nil)
+            self.postNotification()
         }
 
     }
@@ -113,4 +117,24 @@ class MainViewController: UICollectionViewController {
     }
 
 
+}
+
+extension MainViewController {
+    
+    private func registerForNotification() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (_, _) in
+            
+        }
+    }
+    
+    private func postNotification() {
+        let content = UNMutableNotificationContent()
+        content.title = "Download Complite"
+        content.body = "Your background transfer has completed. File path: \(filePath!)"
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
+        let request = UNNotificationRequest(identifier: "Transfer Complite", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
+    
 }
