@@ -8,5 +8,6 @@ This simple app can now:
   4) Get data from website (swiftbook.ru)
   5) UploadImage
   6) Download file
+  7) Work with alamofire methods
 
 ![alt text](https://i.imgur.com/li0CJLq.png?1)
