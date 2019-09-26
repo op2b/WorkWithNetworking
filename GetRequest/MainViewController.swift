@@ -7,14 +7,21 @@ enum Actions: String, CaseIterable {
     case downloadImage = "Download Image"
     case get = "GET"
     case post = "POST"
-    case ourCourses = "Our Courses"
+    case ourCourses = "Courses"
     case uploadImage = "Upload Image"
     case downloadFile = "Download File"
+    case alamoFire = "Corses (Alamofire)"
+    case alamoResponseData = "Response data Alamofire"
+    case responseString = "Response string Alamo."
+    case response = "response Alamofire"
 }
 
 private let uploadImage = "https://api.imgur.com/3/image/"
 private let reuseIdentifier = "Cell"
 private let url = "https://jsonplaceholder.typicode.com/posts"
+private let chackJoke1 = "https://api.chucknorris.io/jokes/Jim0jIOySUmV7Bbz5TFyXQ"
+private let chackJoke2 = "https://api.chucknorris.io/jokes/JiOvC_0ARxGlx7uWGXqSzA"
+private let chackJoke3 = "https://api.chucknorris.io/jokes/JiMoo9CcS4OmmLMxBmuv7A"
 
 
 
@@ -113,9 +120,36 @@ class MainViewController: UICollectionViewController {
         case .downloadFile:
             showALert()
             dataProvider.stratDownload()
+        case .alamoFire:
+            performSegue(withIdentifier: "Alamofire", sender: self)
+        case .alamoResponseData:
+            performSegue(withIdentifier: "ResponseData", sender: self)
+            AlamoFireNetworkRequest.responseData(url: chackJoke1)
+        case .responseString:
+            AlamoFireNetworkRequest.responseString(url: chackJoke2)
+        case .response:
+            AlamoFireNetworkRequest.response(url: chackJoke3)
         }
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let coursesVC = segue.destination as? CourseViewController
+        let imageVC = segue.destination as? ImageViewController
+        
+        switch  segue.identifier {
+        case "OurCourses":
+            coursesVC?.fetchData()
+        case "Alamofire":
+            coursesVC?.fetchDataWithAlamofire()
+        case "ShowImage":
+            imageVC?.fetchImage()
+        case "ResponseData":
+            imageVC?.fetchImageWithAlamofire()
+        default:
+            break
+        }
+        
+    }
 
 }
 

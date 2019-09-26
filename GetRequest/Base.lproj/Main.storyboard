@@ -66,6 +66,8 @@
                     <connections>
                         <segue destination="q9Z-9i-ZRC" kind="show" identifier="ShowImage" id="UD0-2l-jHA"/>
                         <segue destination="QHI-8j-gMu" kind="show" identifier="OurCourses" id="ALf-WL-3Fb"/>
+                        <segue destination="QHI-8j-gMu" kind="show" identifier="Alamofire" id="tW1-ZG-h7c"/>
+                        <segue destination="q9Z-9i-ZRC" kind="show" identifier="ResponseData" id="vCI-pA-tVh"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4W5-ZH-KQG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -269,4 +271,8 @@
             <point key="canvasLocation" x="1148" y="-421"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="tW1-ZG-h7c"/>
+        <segue reference="vCI-pA-tVh"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -10,6 +10,8 @@ class DataProvider: NSObject {
     private lazy var backgroundSession: URLSession = {
         let config = URLSessionConfiguration.background(withIdentifier: "home.GetRequest")
         config.isDiscretionary = true
+        config.timeoutIntervalForRequest = 300
+        config.waitsForConnectivity = true
         config.sessionSendsLaunchEvents = true
         return URLSession(configuration: config, delegate: self, delegateQueue: nil)
     }()

@@ -11,13 +11,6 @@ class CourseViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        fetchData()
-        // Do any additional setup after loading the view.
-    }
-    
     func fetchData() {
         
         NetWorkManager.fecthData(url: url) { (courses) in
@@ -26,6 +19,17 @@ class CourseViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    func fetchDataWithAlamofire() {
+        
+        AlamoFireNetworkRequest.sendRequest(url: url) { (courses) in
+            self.courses = courses
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        
     }
     
     private func configureCell(cell: CustomTableViewCell, for indexPath: IndexPath) {
