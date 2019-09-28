@@ -1,8 +1,13 @@
 
 import Foundation
 import Alamofire
+import UIKit
 
 class AlamoFireNetworkRequest {
+    
+    static var  onProgress: ((Double) -> ())?
+    static var complited: ((String) -> ())?
+    
     
     static func sendRequest(url: String, complition: @escaping (_ courses: [Course]) -> ()) {
         
@@ -64,6 +69,122 @@ class AlamoFireNetworkRequest {
             
         }
         
+    }
+    
+    static func downloadImage(url: String, complition: @escaping (_ image: UIImage)->()) {
+        
+        guard let url = URL(string: url) else {return}
+        
+        request(url).responseData { (responseData) in
+            switch responseData.result {
+                
+            case .success(let data):
+                guard let image = UIImage(data: data) else {return}
+                complition(image)
+            case .failure(let error):
+                print(error)
+                
+            }
+            
+        }
+        
+    }
+    
+    
+    static func downloadImageProgress(url: String, complition: @escaping (_ image: UIImage)->()) {
+        
+        guard  let url = URL(string: url) else {return}
+        request(url).validate().downloadProgress { (progress) in
+            print("totalUinitCount:\n", progress.totalUnitCount)
+            print("compitedUnitCount:\n", progress.completedUnitCount)
+            print("fractionComplited:\n", progress.fractionCompleted)
+            print("localizaedDescription:\n", progress.localizedDescription!)
+            print("------------------------------------------------------------")
+            
+            self.onProgress?(progress.fractionCompleted)
+            self.complited?(progress.localizedDescription)
+            
+            }.response{ (response) in
+                
+
+                
+                guard let data = response.data, let image = UIImage(data: data) else {return}
+                
+                DispatchQueue.main.async {
+                    complition(image)
+                }
+        }
+        
+    }
+    
+    static func  postRequest(url: String, complition: @escaping (_ courses: [Course]) -> ()) {
+        
+        guard let url = URL(string: url) else {return}
+        
+        let userData: [String: Any] = ["name": "Network Requests",
+                                       "link": "https://swiftbook.ru/contents/our-first-applications/",
+                                       "imageUrl": "https://swiftbook.ru/wp-content/uploads/sites/2/2018/08/notifications-course-with-background.png",
+                                       "numberOfLessons": 18,
+                                       "numberOfTests": 10 ]
+        request(url, method: .post, parameters: userData).responseJSON { (responseJson) in
+            
+            guard let statusCOde = responseJson.response?.statusCode else { return }
+            print("statusCode", statusCOde)
+            
+            switch responseJson.result {
+                
+            case .success(let value):
+                print(value)
+                
+                guard let jsonObject  = value as? [String:Any],
+                    let course = Course(json: jsonObject)
+                    else {return}
+                
+                var courses = [Course]()
+                courses.append(course)
+                
+                complition(courses)
+                
+            case .failure(let error):
+                print(error)
+            }
+            
+        }
+    }
+    
+    static func  putRequest(url: String, complition: @escaping (_ courses: [Course]) -> ()) {
+        
+        guard let url = URL(string: url) else {return}
+        
+        let userData: [String: Any] = ["name": "Network with Alamofire",
+                                       "link": "https://swiftbook.ru/contents/our-first-applications/",
+                                       "imageUrl": "https://swiftbook.ru/wp-content/uploads/sites/2/2018/08/notifications-course-with-background.png",
+                                       "numberOfLessons": 18,
+                                       "numberOfTests": 10 ]
+        request(url, method: .put, parameters: userData).responseJSON { (responseJson) in
+            
+            guard let statusCOde = responseJson.response?.statusCode else { return }
+            print("statusCode", statusCOde)
+            
+            switch responseJson.result {
+                
+            case .success(let value):
+                print(value)
+                
+                guard let jsonObject  = value as? [String:Any],
+                    let course = Course(json: jsonObject)
+                    else {return}
+                
+                var courses = [Course]()
+                courses.append(course)
+                
+                complition(courses)
+                
+            case .failure(let error):
+                print(error)
+            }
+            
+        }
     }
     
 }

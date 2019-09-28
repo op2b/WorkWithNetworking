@@ -68,6 +68,9 @@
                         <segue destination="QHI-8j-gMu" kind="show" identifier="OurCourses" id="ALf-WL-3Fb"/>
                         <segue destination="QHI-8j-gMu" kind="show" identifier="Alamofire" id="tW1-ZG-h7c"/>
                         <segue destination="q9Z-9i-ZRC" kind="show" identifier="ResponseData" id="vCI-pA-tVh"/>
+                        <segue destination="q9Z-9i-ZRC" kind="show" identifier="LargeImage" id="Gnc-pH-qr2"/>
+                        <segue destination="QHI-8j-gMu" kind="show" identifier="posRequest" id="iyr-Qu-1hh"/>
+                        <segue destination="QHI-8j-gMu" kind="show" identifier="PutRequest" id="i4Q-AI-89Y"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4W5-ZH-KQG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -88,21 +91,39 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="cYx-eG-qL1">
                                 <rect key="frame" x="197" y="465" width="20" height="20"/>
                             </activityIndicatorView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ytq-A0-UeV">
+                                <rect key="frame" x="126.5" y="848" width="161" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="161" id="S30-Bl-IpA"/>
+                                </constraints>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Complited" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rZy-L5-oRH">
+                                <rect key="frame" x="167.5" y="819" width="79" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="p78-WX-ywr" firstAttribute="leading" secondItem="jbE-Sp-nRj" secondAttribute="leading" id="GWD-ce-fQw"/>
                             <constraint firstItem="p78-WX-ywr" firstAttribute="top" secondItem="jbE-Sp-nRj" secondAttribute="top" id="L9F-OR-PRw"/>
+                            <constraint firstItem="ytq-A0-UeV" firstAttribute="centerX" secondItem="cYx-eG-qL1" secondAttribute="centerX" id="Lk4-6D-DSU"/>
                             <constraint firstItem="cYx-eG-qL1" firstAttribute="centerX" secondItem="p78-WX-ywr" secondAttribute="centerX" id="VmA-3Q-mJQ"/>
                             <constraint firstItem="jbE-Sp-nRj" firstAttribute="bottom" secondItem="p78-WX-ywr" secondAttribute="bottom" id="XcW-zU-K12"/>
                             <constraint firstItem="cYx-eG-qL1" firstAttribute="centerY" secondItem="p78-WX-ywr" secondAttribute="centerY" id="aKF-bC-3uS"/>
+                            <constraint firstItem="ytq-A0-UeV" firstAttribute="top" secondItem="rZy-L5-oRH" secondAttribute="bottom" constant="8" symbolic="YES" id="faL-Os-7vh"/>
                             <constraint firstItem="jbE-Sp-nRj" firstAttribute="trailing" secondItem="p78-WX-ywr" secondAttribute="trailing" id="iYe-um-Dph"/>
+                            <constraint firstItem="jbE-Sp-nRj" firstAttribute="bottom" secondItem="ytq-A0-UeV" secondAttribute="bottom" constant="12" id="q9w-oZ-g5c"/>
+                            <constraint firstItem="rZy-L5-oRH" firstAttribute="centerX" secondItem="ytq-A0-UeV" secondAttribute="centerX" id="sJG-wS-dUT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jbE-Sp-nRj"/>
                     </view>
                     <connections>
                         <outlet property="activityIndecator" destination="cYx-eG-qL1" id="O3p-k6-QMl"/>
+                        <outlet property="complitedView" destination="rZy-L5-oRH" id="GHQ-fX-rOl"/>
                         <outlet property="imageView" destination="p78-WX-ywr" id="R6U-74-BJ2"/>
+                        <outlet property="progressView" destination="ytq-A0-UeV" id="m9u-aP-o2r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ehU-Rw-vNh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -272,7 +293,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="tW1-ZG-h7c"/>
-        <segue reference="vCI-pA-tVh"/>
+        <segue reference="i4Q-AI-89Y"/>
+        <segue reference="Gnc-pH-qr2"/>
     </inferredMetricsTieBreakers>
 </document>

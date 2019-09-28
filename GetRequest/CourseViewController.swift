@@ -7,6 +7,8 @@ class CourseViewController: UIViewController {
     private var courseName: String?
     private var courseUrl: String?
     
+    private let putRequestUrl = "https://jsonplaceholder.typicode.com/posts/1"
+    private let postRequestUrl = "https://jsonplaceholder.typicode.com/posts"
     private let url = "https://swiftbook.ru/wp-content/uploads/api/api_courses"
     
     @IBOutlet weak var tableView: UITableView!
@@ -82,6 +84,29 @@ extension CourseViewController: UITableViewDataSource {
         if let url = courseUrl {
             webViewController.courseUrl = url
         }
+    }
+    
+    func postRequest() {
+        
+        AlamoFireNetworkRequest.postRequest(url: postRequestUrl) { (courses) in
+            self.courses = courses
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    func putRequest() {
+    
+        AlamoFireNetworkRequest.putRequest(url: putRequestUrl) { (courses) in
+            self.courses = courses
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        
     }
 }
 
