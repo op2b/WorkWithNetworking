@@ -1,6 +1,8 @@
 
 import UIKit
 import UserNotifications
+import FBSDKLoginKit
+import FirebaseAuth
 
 enum Actions: String, CaseIterable {
     
@@ -17,6 +19,7 @@ enum Actions: String, CaseIterable {
     case downloadLargeImage = "Download Large Image"
     case postAlamofire = "POST with Alamofire"
     case putRequest = "PUT request with Alamofire"
+    case uploadImagewithAlamofire = "Upload image(Alamo)"
 }
 
 private let uploadImage = "https://api.imgur.com/3/image/"
@@ -50,6 +53,8 @@ class MainViewController: UICollectionViewController {
             self.alert.dismiss(animated: false, completion: nil)
             self.postNotification()
         }
+        
+        checkLoggedIn()
 
     }
     
@@ -138,6 +143,8 @@ class MainViewController: UICollectionViewController {
             performSegue(withIdentifier: "posRequest", sender: self)
         case .putRequest:
             performSegue(withIdentifier: "PutRequest", sender: self)
+        case .uploadImagewithAlamofire:
+            AlamoFireNetworkRequest.uploadImage(url: uploadImage)
             
         }
     }
@@ -185,6 +192,27 @@ extension MainViewController {
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
         let request = UNNotificationRequest(identifier: "Transfer Complite", content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
+    
+}
+
+//: MARK FBSDK
+
+extension MainViewController {
+    
+    private func checkLoggedIn() {
+        
+        if Auth.auth().currentUser == nil {
+            
+            DispatchQueue.main.async {
+                let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                let loginViewCOntroller = storyBoard.instantiateViewController(withIdentifier: "LoginViewController")
+                self.present(loginViewCOntroller, animated: true)
+                return
+            }
+            
+        }
+        
     }
     
 }

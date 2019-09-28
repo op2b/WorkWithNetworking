@@ -159,8 +159,8 @@ class AlamoFireNetworkRequest {
         let userData: [String: Any] = ["name": "Network with Alamofire",
                                        "link": "https://swiftbook.ru/contents/our-first-applications/",
                                        "imageUrl": "https://swiftbook.ru/wp-content/uploads/sites/2/2018/08/notifications-course-with-background.png",
-                                       "numberOfLessons": 18,
-                                       "numberOfTests": 10 ]
+                                       "numberOfLessons": "18",
+                                       "numberOfTests": "10" ]
         request(url, method: .put, parameters: userData).responseJSON { (responseJson) in
             
             guard let statusCOde = responseJson.response?.statusCode else { return }
@@ -185,6 +185,51 @@ class AlamoFireNetworkRequest {
             }
             
         }
+    }
+    
+    static func uploadImage(url: String) {
+        
+        guard let url = URL(string: url) else {return}
+        
+        let image = UIImage(named: "loco")!
+        let data = image.pngData()!
+        let httpHeaders = ["Authorization": "Client-ID aca5b5402d9e78a"]
+        
+        upload(multipartFormData: { (multiplatformData) in
+            multiplatformData.append(data, withName: "image")
+        }, to: url, headers: httpHeaders) { (encodingComplition) in
+            
+            switch encodingComplition {
+                case .success(request: let uploadRequrst
+                    , streamingFromDisk: let streamingDisk,
+                      streamFileURL: let streamUrl):
+                
+                print(uploadRequrst)
+                print(streamingDisk)
+                print(streamUrl ?? "streaminigFileURL is Nil")
+                
+                uploadRequrst.validate().responseJSON(completionHandler: { (responseJson) in
+                    
+                    switch responseJson.result {
+                        
+                    case .success(let value):
+                        print(value)
+                    case .failure(let error):
+                        print(error)
+                        
+                    }
+                    
+                })
+                
+            case .failure(let someError):
+                print(someError)
+                
+            }
+            
+        }
+        
+        
+        
     }
     
 }
