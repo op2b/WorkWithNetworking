@@ -3,6 +3,7 @@ import UIKit
 import FBSDKLoginKit
 import FirebaseAuth
 import FirebaseDatabase
+import GoogleSignIn
 
 class LoginViewController: UIViewController {
     
@@ -22,22 +23,56 @@ class LoginViewController: UIViewController {
         loginButton.setTitle("Login with Facebook", for: .normal)
         loginButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         loginButton.setTitleColor(.white, for: .normal)
-        loginButton.frame = CGRect(x: 32, y: 360 + 60, width: view.frame.width - 64, height: 50)
+        loginButton.frame = CGRect(x: 32, y: 360 + 60 , width: view.frame.width - 64, height: 50)
         loginButton.layer.cornerRadius = 4
         loginButton.addTarget(self, action: #selector(handleCustomFBlogin), for: .touchUpInside)
         return loginButton
         
     }()
+    
+    lazy var customGoogleLoginButtom: UIButton = {
+        
+        let loginButton = UIButton()
+        loginButton.frame = CGRect(x: 32, y: 360 + 80 + 80 + 30, width: view.frame.width - 68, height: 40)
+        loginButton.backgroundColor = .white
+        loginButton.setTitle("Loggin with google", for: .normal)
+        loginButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        loginButton.setTitleColor(.gray, for: .normal)
+        loginButton.layer.cornerRadius = 4
+        loginButton.addTarget(self, action: #selector(handleCustomGoogleLogin), for: .touchUpInside)
+        return loginButton
+    }()
+    
+    lazy var googleLoginButton: GIDSignInButton = {
+       
+        let logintButton = GIDSignInButton()
+        logintButton.frame = CGRect(x: 32, y: 360 + 80 + 55, width: view.frame.width - 64, height: 50)
+        return logintButton
+    }()
+    
+    lazy var signInWithEmail: UIButton = {
+        
+        let loginButton = UIButton()
+        loginButton.frame = CGRect(x: 32, y: 360 + 80 + 80 + 80 + 80, width: view.frame.width - 65, height: 50)
+        loginButton.setTitle("Sign in with email", for: .normal)
+        loginButton.addTarget(self, action: #selector(openSignInVc), for: .touchUpInside)
+        return loginButton
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        GIDSignIn.sharedInstance()?.delegate = self
+        GIDSignIn.sharedInstance()?.uiDelegate = self
         setUpViews()
+        
     }
     
     private func setUpViews() {
         view.addSubview(fbLoginButton)
         view.addSubview(customFBLoginButton)
+        view.addSubview(googleLoginButton)
+        view.addSubview(customGoogleLoginButtom)
+        view.addSubview(signInWithEmail)
         
     }
 
@@ -144,6 +179,49 @@ extension LoginViewController: LoginButtonDelegate {
                 self.openMainViewController()
             }
         }
+        
+    }
+}
+
+// MARK: Google SDK
+
+extension LoginViewController: GIDSignInDelegate , GIDSignInUIDelegate{
+    
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        
+        if let error = error {
+            print("failed to log into Google", error)
+            return
+        }
+        print("log - in")
+        
+        if let userName = user.profile.name, let userEmail = user.profile.email {
+            
+            let userData  = ["name": userName, "email": userEmail]
+            userProfile = UserProfile(data: userData)
+        }
+        
+        guard let authentication = user.authentication else {return}
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                       accessToken: authentication.accessToken)
+        Auth.auth().signIn(with: credential) { (user, error) in
+            
+            if let error = error {
+                print("somthing went wornd with google user", error)
+                return
+            }
+            print("Sucess logged with Google")
+            self.savedIntoFirebase()
+            
+        }
+    }
+    
+    @objc private func handleCustomGoogleLogin() {
+        GIDSignIn.sharedInstance()?.signIn()
+    }
+    
+    @objc private func openSignInVc() {
         
     }
 }

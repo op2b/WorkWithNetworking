@@ -10,12 +10,14 @@
 		953EEF7723393FD700C2A475 /* NetWorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953EEF7623393FD700C2A475 /* NetWorkManager.swift */; };
 		953EEF792339713A00C2A475 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953EEF782339713A00C2A475 /* ImageModel.swift */; };
 		953EEF7B233975BD00C2A475 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953EEF7A233975BD00C2A475 /* DataProvider.swift */; };
+		9567C72323411E9F00A1794C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9567C72223411E9F00A1794C /* SignUpViewController.swift */; };
 		956E0A53233C2CB800A49904 /* AlamofireNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956E0A52233C2CB800A49904 /* AlamofireNetworkRequest.swift */; };
 		956E0A56233FA10A00A49904 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956E0A55233FA10A00A49904 /* LoginViewController.swift */; };
 		956E0A58233FA8D700A49904 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956E0A57233FA8D700A49904 /* UserProfileViewController.swift */; };
 		956E0A5A233FE88C00A49904 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956E0A59233FE88C00A49904 /* Extentions.swift */; };
 		956E0A5C233FF39200A49904 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 956E0A5B233FF39200A49904 /* GoogleService-Info.plist */; };
 		956E0A5E233FFAEE00A49904 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956E0A5D233FFAEE00A49904 /* UserProfile.swift */; };
+		956E0A602340F78100A49904 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956E0A5F2340F78100A49904 /* CurrentUser.swift */; };
 		95FB70CE2337B40900BFD339 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FB70CD2337B40900BFD339 /* AppDelegate.swift */; };
 		95FB70D32337B40900BFD339 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95FB70D12337B40900BFD339 /* Main.storyboard */; };
 		95FB70D52337B40C00BFD339 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95FB70D42337B40C00BFD339 /* Assets.xcassets */; };
@@ -37,6 +39,7 @@
 		953EEF7623393FD700C2A475 /* NetWorkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkManager.swift; sourceTree = "<group>"; };
 		953EEF782339713A00C2A475 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		953EEF7A233975BD00C2A475 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		9567C72223411E9F00A1794C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		956E0A52233C2CB800A49904 /* AlamofireNetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkRequest.swift; sourceTree = "<group>"; };
 		956E0A54233F98C000A49904 /* GetRequest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GetRequest.entitlements; sourceTree = "<group>"; };
 		956E0A55233FA10A00A49904 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -44,6 +47,7 @@
 		956E0A59233FE88C00A49904 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		956E0A5B233FF39200A49904 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		956E0A5D233FFAEE00A49904 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		956E0A5F2340F78100A49904 /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		95FB70CA2337B40900BFD339 /* GetRequest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetRequest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95FB70CD2337B40900BFD339 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95FB70D22337B40900BFD339 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -108,7 +112,9 @@
 			children = (
 				956E0A54233F98C000A49904 /* GetRequest.entitlements */,
 				95FB70CD2337B40900BFD339 /* AppDelegate.swift */,
+				9567C72223411E9F00A1794C /* SignUpViewController.swift */,
 				956E0A57233FA8D700A49904 /* UserProfileViewController.swift */,
+				956E0A5F2340F78100A49904 /* CurrentUser.swift */,
 				956E0A5D233FFAEE00A49904 /* UserProfile.swift */,
 				956E0A55233FA10A00A49904 /* LoginViewController.swift */,
 				953EEF782339713A00C2A475 /* ImageModel.swift */,
@@ -154,6 +160,7 @@
 				95FB70C72337B40900BFD339 /* Frameworks */,
 				95FB70C82337B40900BFD339 /* Resources */,
 				6570DE6789A95C30790A2F27 /* [CP] Embed Pods Frameworks */,
+				1EDE2C11382888C8C3F738A1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -220,6 +227,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1EDE2C11382888C8C3F738A1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GetRequest/Pods-GetRequest-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GetRequest/Pods-GetRequest-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GetRequest/Pods-GetRequest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4CFD933C068FBEEBE37CCE5A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -273,6 +297,7 @@
 				956E0A53233C2CB800A49904 /* AlamofireNetworkRequest.swift in Sources */,
 				95FB70E62337C2B700BFD339 /* CustomTableViewCell.swift in Sources */,
 				95FB70E82337C8A700BFD339 /* Course.swift in Sources */,
+				9567C72323411E9F00A1794C /* SignUpViewController.swift in Sources */,
 				95FB70EA2337CCAD00BFD339 /* WebsiteDescription.swift in Sources */,
 				953EEF7723393FD700C2A475 /* NetWorkManager.swift in Sources */,
 				953EEF7B233975BD00C2A475 /* DataProvider.swift in Sources */,
@@ -282,6 +307,7 @@
 				95FB70EF23393C0700BFD339 /* MainViewController.swift in Sources */,
 				95FB70E42337C25B00BFD339 /* WebViewController.swift in Sources */,
 				95FB70CE2337B40900BFD339 /* AppDelegate.swift in Sources */,
+				956E0A602340F78100A49904 /* CurrentUser.swift in Sources */,
 				956E0A5E233FFAEE00A49904 /* UserProfile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
