@@ -43,14 +43,14 @@ class UserProfileViewController: UIViewController {
     private func setUpViews() {
         view.addSubview(logoutButton)
     }
-
+    
 }
 
 
 
 extension UserProfileViewController {
     
- 
+    
     private func openLoginViewController() {
         
         do {
@@ -63,7 +63,7 @@ extension UserProfileViewController {
             }
         } catch let error{
             print("Fail sign out error", error.localizedDescription)
-       }
+        }
     }
     
     @objc private func signOut() {
@@ -81,32 +81,42 @@ extension UserProfileViewController {
                     GIDSignIn.sharedInstance()?.signOut()
                     print("User did logout of google")
                     openLoginViewController()
+                case "password":
+                    try! Auth.auth().signOut()
+                    openLoginViewController()
                 default:
                     print("User is signed in with \(userInfp.providerID)")
                 }
             }
         }
-    
+        
     }
     
     private func fetchingUserData() {
         if Auth.auth().currentUser != nil {
             
-            guard let uid = Auth.auth().currentUser?.uid else {return}
-            
-            Database.database().reference()
-            .child("users")
-            .child(uid)
-                .observeSingleEvent(of: .value, with: { (snapshot) in
-                    guard let userData = snapshot.value as? [String:Any] else {return}
-                    self.currentUser = CurrentUser(uid: uid, data: userData)!
-                    self.activityIndecator.stopAnimating()
-                    self.activityIndecator.isHidden = true
-                    self.userNameLabel.isHidden = false
-                    self.userNameLabel.text = self.getProviderData()
-                    
-                }) { (error) in
-                    print(error)
+            if let userName  = Auth.auth().currentUser?.displayName {
+                activityIndecator.stopAnimating()
+                userNameLabel.isHidden = false
+                userNameLabel.text = userName
+            } else  {
+                guard let uid = Auth.auth().currentUser?.uid else {return}
+                
+                Database.database().reference()
+                    .child("users")
+                    .child(uid)
+                    .observeSingleEvent(of: .value, with: { (snapshot) in
+                        guard let userData = snapshot.value as? [String:Any] else {return}
+                        self.currentUser = CurrentUser(uid: uid, data: userData)!
+                        self.activityIndecator.stopAnimating()
+                        self.activityIndecator.isHidden = true
+                        self.userNameLabel.isHidden = false
+                        self.userNameLabel.text = self.getProviderData()
+                        
+                    }) { (error) in
+                        print(error)
+                }
+                
             }
         }
     }

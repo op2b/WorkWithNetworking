@@ -398,7 +398,7 @@
         <!--Sign In-->
         <scene sceneID="1F2-2T-IGJ">
             <objects>
-                <viewController storyboardIdentifier="SignIn" title="Sign In" id="wZQ-aT-YXX" customClass="SignInViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignIn" title="Sign In" id="wZQ-aT-YXX" customClass="SignUpViewController" customModule="GetRequest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mm8-js-XU9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -490,7 +490,8 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" image="backArrow"/>
                                 <connections>
-                                    <action selector="goBack:" destination="wZQ-aT-YXX" eventType="touchUpInside" id="Zfa-z3-R9B"/>
+                                    <action selector="goBack:" destination="wZQ-aT-YXX" eventType="touchUpInside" id="9Yc-GX-loZ"/>
+                                    <action selector="goBack:" destination="wef-Mj-yWr" eventType="touchUpInside" id="j4h-6r-uvJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I2Y-0O-CtX">
@@ -500,7 +501,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="U7F-if-HUR" kind="show" id="hg2-1z-vpR"/>
+                                    <segue destination="U7F-if-HUR" kind="show" id="L1M-cK-67K"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -518,18 +519,19 @@
                         <viewLayoutGuide key="safeArea" id="Ksd-47-vc6"/>
                     </view>
                     <connections>
-                        <outlet property="emailTextField" destination="Giy-w3-Emg" id="7gy-GE-Rc9"/>
-                        <outlet property="passwordTextField" destination="dH9-qo-nCW" id="h8T-4w-ik1"/>
+                        <outlet property="emailTextField" destination="Giy-w3-Emg" id="QW6-z3-Fj8"/>
+                        <outlet property="passwordTextField" destination="dH9-qo-nCW" id="9lz-rh-IkB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mqF-Cj-rJd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="wef-Mj-yWr" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1148" y="-1077"/>
+            <point key="canvasLocation" x="1147.8260869565217" y="-1077.4553571428571"/>
         </scene>
         <!--Sign Up-->
         <scene sceneID="1cB-m2-ybR">
             <objects>
-                <viewController storyboardIdentifier="SignUp" title="Sign Up" id="U7F-if-HUR" customClass="SignUpViewController" customModule="GetRequest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUp" title="Sign Up" id="U7F-if-HUR" customClass="SignUppendViewController" customModule="GetRequest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6LD-pa-Daq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -684,7 +686,8 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" image="backArrow"/>
                                 <connections>
-                                    <action selector="goBack:" destination="U7F-if-HUR" eventType="touchUpInside" id="fMw-Oh-ZF5"/>
+                                    <action selector="goBACK:" destination="9wD-R2-ZBf" eventType="touchUpInside" id="FW6-i5-AOI"/>
+                                    <action selector="goBSCK:" destination="U7F-if-HUR" eventType="touchUpInside" id="xAK-hc-4rA"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -700,19 +703,20 @@
                         <viewLayoutGuide key="safeArea" id="d68-06-09i"/>
                     </view>
                     <connections>
-                        <outlet property="confirmPasswordTextField" destination="b4K-gS-4n1" id="nS8-BK-JO6"/>
-                        <outlet property="emailTextField" destination="bnN-cx-4D7" id="KhH-u0-dv6"/>
-                        <outlet property="passwordTextField" destination="5td-5e-b85" id="ACn-FR-JBe"/>
-                        <outlet property="userNameTextField" destination="dvk-Mb-N4t" id="yOC-np-GKB"/>
+                        <outlet property="confirmPassword" destination="b4K-gS-4n1" id="NEt-MA-9bl"/>
+                        <outlet property="emailTextField" destination="bnN-cx-4D7" id="MPL-OO-nPB"/>
+                        <outlet property="passwordTextField" destination="5td-5e-b85" id="sxN-Ti-yTp"/>
+                        <outlet property="userNameTextField" destination="dvk-Mb-N4t" id="kZA-pI-nz9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hgr-7e-Q56" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="9wD-R2-ZBf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2083" y="-1077"/>
         </scene>
     </scenes>
     <resources>
-        <image name="backArrow" width="16" height="16"/>
+        <image name="backArrow" width="25" height="25"/>
         <image name="circle-user-7" width="30" height="30"/>
         <image name="logo-built_black" width="752" height="336"/>
         <image name="newspaper-7" width="30" height="30"/>

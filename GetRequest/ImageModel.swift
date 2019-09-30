@@ -11,4 +11,6 @@ struct ImageModel {
         guard let data = image.pngData() else {return nil}
         self.data = data
     }
+    
+    
 }

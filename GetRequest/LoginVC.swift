@@ -44,7 +44,7 @@ class LoginViewController: UIViewController {
     }()
     
     lazy var googleLoginButton: GIDSignInButton = {
-       
+        
         let logintButton = GIDSignInButton()
         logintButton.frame = CGRect(x: 32, y: 360 + 80 + 55, width: view.frame.width - 64, height: 50)
         return logintButton
@@ -58,7 +58,7 @@ class LoginViewController: UIViewController {
         loginButton.addTarget(self, action: #selector(openSignInVc), for: .touchUpInside)
         return loginButton
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         GIDSignIn.sharedInstance()?.delegate = self
@@ -75,8 +75,8 @@ class LoginViewController: UIViewController {
         view.addSubview(signInWithEmail)
         
     }
-
-
+    
+    
 }
 
 extension LoginViewController: LoginButtonDelegate {
@@ -88,7 +88,7 @@ extension LoginViewController: LoginButtonDelegate {
             print(error)
             return
         }
-       
+        
         guard AccessToken.isCurrentAccessTokenActive else {return}
         signIntroFirebase()
         
@@ -224,4 +224,5 @@ extension LoginViewController: GIDSignInDelegate , GIDSignInUIDelegate{
     @objc private func openSignInVc() {
         
     }
+    
 }
